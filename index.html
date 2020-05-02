@@ -11,13 +11,48 @@
       <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/sticky-header/bootstrap-table-sticky-header.css" rel="stylesheet">
       <style type="text/css" media="screen">
          .table thead th {
-         vertical-align: middle;
+          vertical-align: middle;
+         }
+        .active a {
+          color: white;
+          text-decoration: underline;
          }
       </style>
    </head>
    <body>
+    
       <div class="container-fluid">
          <h1 style="text-align: center; margin: 32px;">Covid Cases Estimates</h1>
+
+          <div class=".container-lg">
+              <h5>Choose an Infection Fatality Rate (IFR)</h5>
+              <div class="list-group">
+                <button id="btn_medrxiv" type="button" 
+                  class="list-group-item list-group-item-action active"
+                  data-toggle="list">
+                  Medrxiv - IFR 0.66% (0.39%, 1.33%) - 
+                  <a href="https://www.medrxiv.org/content/10.1101/2020.03.09.20033357v1" title="source">Source</a>
+                </button>
+                <button id="btn_imperial" type="button" class="list-group-item list-group-item-action" 
+                  data-toggle="list">
+                  Imperial College - IFR 0.9% (0.4%, 1.4%) - 
+                  <a href="https://www.cebm.net/wp-content/uploads/2020/03/Impact-assessment-of-non-pharmaceutical-interventions-NPIs-to-reduce-COVID-19-mortality-and-healthcare-demand-.pdf" title="source">Source</a>
+                </button>
+                <button id="btn_cebm" type="button" 
+                  class="list-group-item list-group-item-action"
+                  data-toggle="list">
+                  CEBM - IFR (0.1% - 0.41%) - 
+                  <a href="https://www.cebm.net/covid-19/global-covid-19-case-fatality-rates" title="source">Source</a>
+                </button>
+                <button id="btn_iceland" type="button" 
+                class="list-group-item list-group-item-action"
+                data-toggle="list">
+                  Iceland - IFR (0.03% - 0.28%) -
+                  <a href="https://www.cebm.net/covid-19/global-covid-19-case-fatality-rates" title="source">Source</a>
+                </button>
+              </div>
+            </div>
+
          <div class="table-responsive">
             <table id="countries" style="text-align: center;" class="table-fixed"
                data-search="true"
