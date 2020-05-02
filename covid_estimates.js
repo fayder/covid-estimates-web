@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('#countries').bootstrapTable();
+    $('[data-toggle="tooltip"]').tooltip()
 
     $('#btn_medrxiv').click(function(event){
     	if ($('#btn_medrxiv').hasClass('active')) {
