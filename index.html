@@ -18,7 +18,7 @@
       <h1 style="text-align: center; margin: 32px;">Covid Cases Estimates</h1>
       
       <div class="table-responsive">
-        <table id="countries" class="table table-bordered" style="text-align: center;">
+        <table id="countries"  style="text-align: center;" class="table table-bordered table-hover" data-search="true" data-show-columns="true" data-show-multi-sort="true" data-url="http://localhost:8080/medrxiv">
           <thead>
             <tr>
               <th scope="col">Country</th>
@@ -26,7 +26,7 @@
               <th scope="col">Reported cases</th>
               <th scope="col">Reported deaths</th>
               <th scope="col">Reported CFR</th>
-              <th scope="col" colspan="2" style="text-align: center;">Estimated cases (max-min)</th>
+              <th scope="col" colspan="2">Estimated cases (max-min)</th>
               <th scope="col">Estimated cases (single)</th>
               <!--th scope="col">Estimated % of population (min-max)</th-->
               <th scope="col">Estimated % of population infected (single)</th>
@@ -45,6 +45,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+
     <script src="covid_estimates.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>

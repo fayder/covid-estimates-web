@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	
-	var countries_endpoint = "https://covid-estimates-backend.herokuapp.com/";
+	var countries_endpoint = "https://covid-estimates-backend.herokuapp.com/worldometer";
 	var ifr_endpoint = "https://covid-estimates-backend.herokuapp.com/ifr";
 	var ifr_low = 0.39
 	var ifr_high = 1.3
@@ -21,7 +21,7 @@ $(document).ready(function () {
 			.append(`<td>${formant_number(country["population"])}</td>`)
 			.append(`<td>${formant_number(country["cases"])}</td>`)
 			.append(`<td>${formant_number(country["deaths"])}</td>`)
-			.append(`<td>${country["reported_cfr"]}</td>`)
+			.append(`<td>${(country["reported_cfr"] * 100).toFixed((2))}</td>`)
 			.append(`<td>${calc_cases_min(country["deaths"])}</td>`)
 			.append(`<td>${calc_cases_max(country["deaths"])}</td>`)
 			.append(`<td>${calc_cases_single(country["deaths"])}</td>`)
@@ -57,4 +57,6 @@ $(document).ready(function () {
 		var population_percent = (cases/population * 100).toFixed(2) + '%';
 		return population_percent;
 	}
+	
+	
 });
