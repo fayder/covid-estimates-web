@@ -6,7 +6,7 @@ $(document).ready(function () {
 	var ifr_high = 1.3
 	var ifr_consolidated = 0.66
 
-	var countries_response = jQuery.get(countries_endpoint, function(data) {
+	var countries_response = $.get(countries_endpoint, function(data) {
 		process_countries(data);
 	}).fail( function(error) {
 		console.log(error)
@@ -55,7 +55,6 @@ $(document).ready(function () {
 
 	function calc_population_percent(cases, population) {
 		var population_percent = (cases/population * 100).toFixed(2) + '%';
-		console.log(population_percent);
 		return population_percent;
 	}
 });
