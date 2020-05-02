@@ -24,7 +24,7 @@
 </head>
 
 <body>
-
+    <div id="google_translate_element" style="margin: 16px;"></div>  
     <div class="container-fluid">
         <h1 style="text-align: center; margin: 32px;">Covid-19 Estimates</h1>
 
@@ -68,12 +68,12 @@
                         <th scope="col" data-field="ifr_range" data-sortable="false" class="col-1">Estimated cases (min-max)
                             <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="reported deaths divided by ifr range"></i></th>
                         </th>
-                        <th scope="col" data-field="single_ifr" data-sortable="true" class="col-1">Estimated cases (single)
-                            <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="reported deaths divided by single ifr"></i></th>
+                        <th scope="col" data-field="single_ifr" data-sortable="true" class="col-1">Estimated cases
+                            <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="reported deaths divided by ifr"></i></th>
                         </th>
                         <th scope="col" data-field="population_percentage_single" data-sortable="true" class="col-1">
                             Estimated % of
-                            <br> population infected (single)</th>
+                            <br> population infected</th>
                         <th scope="col" data-field="population_percentage_range" class="col-1">Estimated % of
                             <br> population infected (min-max)</th>
                     </tr>
@@ -89,6 +89,8 @@
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/multiple-sort/bootstrap-table-multiple-sort.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/sticky-header/bootstrap-table-sticky-header.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>  
+
     <script src="covid_estimates.js" type="text/javascript" charset="utf-8"></script>
     <script>
         function customSort(sortName, sortOrder, data) {
@@ -135,6 +137,13 @@
                 return 0;
             });
         }
+
+        function googleTranslateElementInit() {  
+            new google.translate.TranslateElement( 
+                {pageLanguage: 'en'},  
+                'google_translate_element' 
+            );  
+        }  
     </script>
 </body>
 
