@@ -1,21 +1,43 @@
 $(document).ready(function () {
-	$('#countries').bootstrapTable()
+	$('#countries').bootstrapTable();
 
 	function customSort(sortName, sortOrder, data) {
-	    var order = sortOrder === 'desc' ? -1 : 1
-	    data.sort(function (a, b) {
-	      var aa = +((a[sortName] + '').replace(/,/g, ''))
-	      var bb = +((b[sortName] + '').replace(/,/g, ''))
-	      
-	      if (aa < bb) {
-	        return order * -1
-	      }
-	      if (aa > bb) {
-	        return order
-	      }
-	      return 0
-	    })
-	  }
+        var order = sortOrder === 'desc' ? -1 : 1;
+
+        data.sort(function (a, b) {
+
+          var firstvalue = a[sortName] + '';
+          var secondvalue = b[sortName] + '';
+          var aa;
+          var bb;
+
+          if (firstvalue.includes(',') || secondvalue.includes(',')) {
+            if (firstvalue == 'null') { firstvalue = '0.0'}
+            if (secondvalue == 'null') { secondvalue = '0.0'}
+            aa = +((firstvalue).replace(/,/g, ''));
+            bb = +((secondvalue).replace(/,/g, ''));
+          } else if (firstvalue.includes('%') || secondvalue.includes('%')) {
+            if (firstvalue == 'null') { firstvalue = '0.000%'}
+            if (secondvalue == 'null') { secondvalue = '0.000%'}
+            aa = +((firstvalue).replace(/%/g, ''));
+            bb = +((secondvalue).replace(/%/g, ''));
+          }
+          else {
+            if (firstvalue == 'null') { firstvalue = '0.0'}
+            if (secondvalue == 'null') { secondvalue = '0.0'}
+            aa = firstvalue;
+            bb = secondvalue;
+          }
+
+          if (aa < bb) {
+            return order * -1;
+          }
+          if (aa > bb) {
+            return order;
+          }
+          return 0;
+        });
+      }
 	/**
 	var countries_endpoint = "https://covid-estimates-backend.herokuapp.com/worldometer";
 	var ifr_endpoint = "https://covid-estimates-backend.herokuapp.com/ifr";
