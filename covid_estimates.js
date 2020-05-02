@@ -38,6 +38,15 @@ $(document).ready(function() {
     	}
     });
 
+    $('#btn_gangelt').click(function(event){
+    	if ($('#btn_gangelt').hasClass('active')) {
+    		return;
+    	} else {
+    		$('#countries').bootstrapTable('refreshOptions', 
+    		{ url: 'https://covid-estimates-backend.herokuapp.com/gangelt'})	
+    	}
+    });
+
     $('.source_link').click(function(event) {
     	var win = window.open(this.href, '_blank');
   		win.focus();
