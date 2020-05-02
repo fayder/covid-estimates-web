@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
     <style type="text/css" media="screen">
-      .table thead th {
-        vertical-align: middle;
-      }
+    .table thead th {
+    vertical-align: middle;
+    }
     </style>
   </head>
   <body>
@@ -18,24 +18,30 @@
       <h1 style="text-align: center; margin: 32px;">Covid Cases Estimates</h1>
       
       <div class="table-responsive">
-        <table id="countries"  style="text-align: center;" class="table table-bordered table-hover" data-search="true" data-show-columns="true" data-show-multi-sort="true" data-url="http://localhost:8080/medrxiv">
+        <table id="countries" style="text-align: center;" class="table table-bordered table-hover" 
+        data-search="true" 
+        data-show-columns="true" 
+        data-show-multi-sort="true"
+        data-custom-sort="customSort"
+        data-url="https://covid-estimates-backend.herokuapp.com/medrxiv">
           <thead>
             <tr>
-              <th scope="col">Country</th>
-              <th scope="col">Population</th>
-              <th scope="col">Reported cases</th>
-              <th scope="col">Reported deaths</th>
-              <th scope="col">Reported CFR</th>
-              <th scope="col" colspan="2">Estimated cases (max-min)</th>
-              <th scope="col">Estimated cases (single)</th>
+              <th scope="col" data-field="name" data-sortable="true">Country</th>
+              <th scope="col" data-field="population" data-sortable="true">Population</th>
+              <th scope="col" data-field="cases" data-sortable="true">Reported cases</th>
+              <th scope="col" data-field="deaths" data-sortable="true">Reported deaths</th>
+              <th scope="col" data-field="reported_cfr" data-sortable="true">Reported CFR</th>
+              <th scope="col" data-field="ifr_range" data-sortable="false">Estimated cases (min-max)</th>
+              <th scope="col" data-field="single_ifr" data-sortable="true">Estimated cases (single)</th>
               <!--th scope="col">Estimated % of population (min-max)</th-->
-              <th scope="col">Estimated % of population infected (single)</th>
+              <th scope="col" data-field="population_percentage_single" data-sortable="true">Estimated % of population infected (single)</th>
             </tr>
           </thead>
           <tbody>
             
           </tbody>
         </table>
+
       </div>
     </div>
     <script
@@ -45,7 +51,47 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
-
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/multiple-sort/bootstrap-table-multiple-sort.js"></script>
     <script src="covid_estimates.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+      function customSort(sortName, sortOrder, data) {
+        var order = sortOrder === 'desc' ? -1 : 1;
+
+        data.sort(function (a, b) {
+
+          var firstvalue = a[sortName] + '';
+          var secondvalue = b[sortName] + '';
+          var aa;
+          var bb;
+
+          if (firstvalue.includes(',') || secondvalue.includes(',')) {
+            if (firstvalue == 'null') { firstvalue = '0.0'}
+            if (secondvalue == 'null') { secondvalue = '0.0'}
+            aa = +((firstvalue).replace(/,/g, ''));
+            bb = +((secondvalue).replace(/,/g, ''));
+          } else if (firstvalue.includes('%') || secondvalue.includes('%')) {
+            if (firstvalue == 'null') { firstvalue = '0.000%'}
+            if (secondvalue == 'null') { secondvalue = '0.000%'}
+            aa = +((firstvalue).replace(/%/g, ''));
+            bb = +((secondvalue).replace(/%/g, ''));
+          }
+          else {
+            if (firstvalue == 'null') { firstvalue = '0.0'}
+            if (secondvalue == 'null') { secondvalue = '0.0'}
+            aa = firstvalue;
+            bb = secondvalue;
+          }
+
+          if (aa < bb) {
+            return order * -1;
+          }
+          if (aa > bb) {
+            return order;
+          }
+          return 0;
+        });
+      }
+    </script>
   </body>
 </html>

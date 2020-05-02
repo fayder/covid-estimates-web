@@ -1,5 +1,22 @@
 $(document).ready(function () {
-	
+	$('#countries').bootstrapTable()
+
+	function customSort(sortName, sortOrder, data) {
+	    var order = sortOrder === 'desc' ? -1 : 1
+	    data.sort(function (a, b) {
+	      var aa = +((a[sortName] + '').replace(/,/g, ''))
+	      var bb = +((b[sortName] + '').replace(/,/g, ''))
+	      
+	      if (aa < bb) {
+	        return order * -1
+	      }
+	      if (aa > bb) {
+	        return order
+	      }
+	      return 0
+	    })
+	  }
+	/**
 	var countries_endpoint = "https://covid-estimates-backend.herokuapp.com/worldometer";
 	var ifr_endpoint = "https://covid-estimates-backend.herokuapp.com/ifr";
 	var ifr_low = 0.39
@@ -57,6 +74,6 @@ $(document).ready(function () {
 		var population_percent = (cases/population * 100).toFixed(2) + '%';
 		return population_percent;
 	}
-	
+	**/
 	
 });
