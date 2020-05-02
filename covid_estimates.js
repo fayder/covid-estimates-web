@@ -36,4 +36,9 @@ $(document).ready(function() {
     		{ url: 'https://covid-estimates-backend.herokuapp.com/iceland'})	
     	}
     });
+
+    $('.source_link').click(function(event) {
+    	var win = window.open(this.href, '_blank');
+  		win.focus();
+    });
 });
