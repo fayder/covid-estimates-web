@@ -118,13 +118,19 @@
                     }
                     aa = +((firstvalue).replace(/%/g, ''));
                     bb = +((secondvalue).replace(/%/g, ''));
-                } else {
+                } else if (firstvalue.includes('.') || secondvalue.includes('.')) {
                     if (firstvalue == 'null') {
                         firstvalue = '0.0'
                     }
                     if (secondvalue == 'null') {
                         secondvalue = '0.0'
                     }
+                    aa = firstvalue;
+                    bb = secondvalue;
+                } else if (!isNaN(firstvalue) || !isNaN(secondvalue)) {
+                    aa = parseInt(firstvalue);
+                    bb = parseInt(secondvalue);
+                } else {
                     aa = firstvalue;
                     bb = secondvalue;
                 }
