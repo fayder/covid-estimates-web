@@ -29,15 +29,6 @@ $(document).ready(function() {
     	}
     });
 
-    $('#btn_iceland').click(function(event){
-    	if ($('#btn_iceland').hasClass('active')) {
-    		return;
-    	} else {
-    		$('#countries').bootstrapTable('refreshOptions', 
-    		{ url: 'https://covid-estimates-backend.herokuapp.com/iceland'})	
-    	}
-    });
-
     $('#btn_gangelt').click(function(event){
     	if ($('#btn_gangelt').hasClass('active')) {
     		return;
