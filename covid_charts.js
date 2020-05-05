@@ -49,10 +49,17 @@ $(document).ready(function() {
 	    	legend: {
 	    		display: false
 	    	},
+	    	tooltips: {
+	    		callbacks: {
+	    			label: function(tooltipItem, data) {
+	    				return numeral(tooltipItem['value']).format('0,0');
+	    			}
+	    		}
+	    	},
 	        scales: {
 	            yAxes: [{
 	                ticks: {
-	                    beginAtZero: false,
+	                    beginAtZero: true,
 	                    callback: function(value, index, values) {
                         	return numeral(value).format('0,0')
                     	}
