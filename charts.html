@@ -13,10 +13,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
     <script src="https://kit.fontawesome.com/81d3f0dee6.js" crossorigin="anonymous"></script>
     <style type="text/css" media="screen">
-        .active a {
-            color: white;
-            text-decoration: underline;
-        }
+    .active a {
+        color: white;
+        text-decoration: underline;
+    }
     </style>
 </head>
 
@@ -38,7 +38,6 @@
     </nav>
     <div class="container">
         <h1 style="margin: 32px; text-align: center;">Charts 🛠️👷‍♂️</h1>
-
         <div class="container-md">
             <h5>Choose an Infection Fatality Rate (IFR)</h5>
             <div class="list-group">
@@ -60,15 +59,20 @@
                 </button>
             </div>
             <br><br>
-            
-            <h4>Estimated minimum real cases</h4>
-            <canvas id="chart_estimated_cases" width="400" height="200"></canvas>   
-            <br><br>
-            <h4>Estimated minimum percentage of population infected</h4>
-            <canvas id="chart_estimated_population" width="400" height="200"></canvas>   
-            <br><br>
-        </div>    
-        
+        </div>
+
+         <div class="row">
+                <div class="col-xl">
+                    <p>Estimated minimum real cases</p>
+                    <canvas id="chart_estimated_cases" width="400" height="300"></canvas>
+                    <br><br>
+                </div>
+                <div class="col-xl">
+                    <p>Estimated minimum percentage of population infected</p>
+                    <canvas id="chart_estimated_population" width="400" height="300"></canvas>
+                    <br><br>
+                </div>
+            </div>
     </div>
     <br><br>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -76,8 +80,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" type="text/javascript" charset="utf-8"></script>
-
     <script src="covid_charts.js" type="text/javascript" charset="utf-8"></script>
-
 </body>
+
 </html>
