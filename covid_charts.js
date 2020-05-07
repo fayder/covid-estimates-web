@@ -7,7 +7,7 @@ $(document).ready(function() {
     }
 
     function chartCEBM(data) {
-        var topFive = data.slice(0, 5);
+        var topFive = data.slice(0, 6);
         var labels = [];
         var min_cases = [];
         var max_cases = [];
@@ -26,8 +26,11 @@ $(document).ready(function() {
             single_population.push(item['population_percentage_single']);
         });
         console.log(min_population)
-        drawCasesChart('chart_estimated_cases', 'Estimated minimum cases', labels, min_cases);
-        drawPercentageChart('chart_estimated_population', 'Estimated percentage of population infected', labels, min_population);
+        drawCasesChart('chart_estimated_cases_min', 'Estimated min. cases', labels, min_cases);
+        drawCasesChart('chart_estimated_cases_max', 'Estimated max. cases', labels, max_cases);
+
+        drawPercentageChart('chart_estimated_population_min', 'Estimated min. percentage of population infected', labels, min_population);
+        drawPercentageChart('chart_estimated_population_max', 'Estimated max. percentage of population infected', labels, max_population);
     }
 
     function drawPercentageChart(chart_id, chart_label, labels, data) {
@@ -44,7 +47,8 @@ $(document).ready(function() {
                         'rgba(255, 159, 64, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(23, 152, 174, 0.2)'
 
                     ],
                     borderColor: [
@@ -52,7 +56,8 @@ $(document).ready(function() {
                         'rgba(255, 159, 64, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)'
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(1, 130, 131, 1)'
                     ],
                     borderWidth: 1
                 }]
@@ -96,7 +101,8 @@ $(document).ready(function() {
                         'rgba(255, 159, 64, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(23, 152, 174, 0.2)'
 
                     ],
                     borderColor: [
@@ -104,7 +110,8 @@ $(document).ready(function() {
                         'rgba(255, 159, 64, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)'
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(1, 130, 131, 1)'
                     ],
                     borderWidth: 1
                 }]
