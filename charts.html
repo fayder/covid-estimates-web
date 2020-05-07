@@ -13,10 +13,16 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
     <script src="https://kit.fontawesome.com/81d3f0dee6.js" crossorigin="anonymous"></script>
     <style type="text/css" media="screen">
-    .active a {
-        color: white;
-        text-decoration: underline;
-    }
+        .active a {
+            color: white;
+            text-decoration: underline;
+        }
+        .js-range-chart {
+            display: flex;
+        }
+        .js-single-chart {
+            display: none;
+        }
     </style>
 </head>
 
@@ -43,24 +49,24 @@
             <div class="list-group">
                 <button id="btn_cebm" type="button" class="list-group-item list-group-item-action active" data-toggle="list">
                     CEBM - IFR (0.1% - 0.41%) -
-                    <a class="source_link" href="https://www.cebm.net/covid-19/global-covid-19-case-fatality-rates" title="source">Source</a> 🛠️👷‍♂️
+                    <a class="source_link" href="https://www.cebm.net/covid-19/global-covid-19-case-fatality-rates" title="source">Source</a>
                 </button>
-                <button id="btn_medrxiv" type="button" class="list-group-item list-group-item-action disabled" data-toggle="list">
+                <button id="btn_medrxiv" type="button" class="list-group-item list-group-item-action" data-toggle="list">
                     Imperial College on Medrxiv - IFR 0.66% (0.39%, 1.33%) -
-                    <a class="source_link" href="https://www.medrxiv.org/content/10.1101/2020.03.09.20033357v1" title="source" target="_blank">Source</a> 🛠👷‍♂️
+                    <a class="source_link" href="https://www.medrxiv.org/content/10.1101/2020.03.09.20033357v1" title="source" target="_blank">Source</a>
                 </button>
-                <button id="btn_imperial" type="button" class="list-group-item list-group-item-action disabled" data-toggle="list">
+                <button id="btn_imperial" type="button" class="list-group-item list-group-item-action" data-toggle="list">
                     Imperial College - IFR 0.9% (0.4%, 1.4%) -
-                    <a class="source_link" href="https://spiral.imperial.ac.uk:8443/handle/10044/1/77482" title="source">Source</a> 🛠️👷‍♂️
+                    <a class="source_link" href="https://spiral.imperial.ac.uk:8443/handle/10044/1/77482" title="source">Source</a>
                 </button>
-                <button id="btn_gangelt" type="button" class="list-group-item list-group-item-action disabled" data-toggle="list">
+                <button id="btn_gangelt" type="button" class="list-group-item list-group-item-action" data-toggle="list">
                     Gangelt - IFR 0.37% -
-                    <a class="source_link" href="https://www.land.nrw/sites/default/files/asset/document/zwischenergebnis_covid19_case_study_gangelt_en.pdf" title="source">Source</a> 🛠️👷‍♂️
+                    <a class="source_link" href="https://www.land.nrw/sites/default/files/asset/document/zwischenergebnis_covid19_case_study_gangelt_en.pdf" title="source">Source</a>
                 </button>
             </div>
             <br><br>
         </div>
-        <div class="row">
+        <div class="row js-range-chart">
             <div class="col-xl">
                 <p>Estimated min. real cases</p>
                 <canvas id="chart_estimated_cases_min" width="400" height="300"></canvas>
@@ -72,7 +78,7 @@
                 <br><br>
             </div>
         </div>
-        <div class="row">
+        <div class="row js-range-chart">
             <div class="col-xl">
                 <p>Estimated min. percentage of population infected</p>
                 <canvas id="chart_estimated_population_min" width="400" height="300"></canvas>
@@ -81,6 +87,18 @@
             <div class="col-xl">
                 <p>Estimated max. percentage of population infected</p>
                 <canvas id="chart_estimated_population_max" width="400" height="300"></canvas>
+                <br><br>
+            </div>
+        </div>
+        <div class="row js-single-chart">
+            <div class="col-xl">
+                <p>Estimated real cases</p>
+                <canvas id="chart_estimated_cases_single" width="400" height="300"></canvas>
+                <br><br>
+            </div>
+            <div class="col-xl">
+                <p>Estimated percentage of population infected</p>
+                <canvas id="chart_estimated_population_single" width="400" height="300"></canvas>
                 <br><br>
             </div>
         </div>
