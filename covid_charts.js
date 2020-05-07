@@ -26,7 +26,7 @@ $(document).ready(function() {
             single_population.push(item['population_percentage_single']);
         });
         console.log(min_population)
-        drawChart('chart_estimated_cases', 'Estimated minimum cases', labels, min_cases);
+        drawCasesChart('chart_estimated_cases', 'Estimated minimum cases', labels, min_cases);
         drawPercentageChart('chart_estimated_population', 'Estimated percentage of population infected', labels, min_population);
     }
 
@@ -64,7 +64,7 @@ $(document).ready(function() {
                 tooltips: {
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            return numeral(tooltipItem['value']).format('0%');
+                            return numeral(tooltipItem['value']).format('0.00%');
                         }
                     }
                 },
@@ -73,7 +73,7 @@ $(document).ready(function() {
                         ticks: {
                             beginAtZero: true,
                             callback: function(value, index, values) {
-                                return numeral(value).format('0%')
+                                return numeral(value).format('0.00%')
                             }
                         }
                     }]
@@ -82,7 +82,7 @@ $(document).ready(function() {
         });
     }
 
-    function drawChart(chart_id, chart_label, labels, data) {
+    function drawCasesChart(chart_id, chart_label, labels, data) {
         var ctx = document.getElementById(chart_id).getContext('2d');
         var theChart = new Chart(ctx, {
             type: 'bar',
