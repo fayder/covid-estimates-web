@@ -11,18 +11,25 @@
     <title>Covid-19 Estimates</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
-    <script src="https://kit.fontawesome.com/81d3f0dee6.js" crossorigin="anonymous"></script>
     <style type="text/css" media="screen">
-        .active a {
-            color: white;
-            text-decoration: underline;
-        }
-        .js-range-chart {
-            display: flex;
-        }
-        .js-single-chart {
-            display: none;
-        }
+    .active a {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .js-range-chart {
+        display: flex;
+    }
+
+    .js-single-chart {
+        display: none;
+    }
+
+    .dropdown-menu{
+          height:300px;
+          overflow-y:auto;
+       }
+    }
     </style>
 </head>
 
@@ -63,6 +70,23 @@
                     Gangelt - IFR 0.37% -
                     <a class="source_link" href="https://www.land.nrw/sites/default/files/asset/document/zwischenergebnis_covid19_case_study_gangelt_en.pdf" title="source">Source</a>
                 </button>
+            </div>
+            <br><br>
+        </div>
+        <div class="container-sm">
+            <div class="dropdown">
+                <button 
+                    id="dropdown-menu-btn"
+                    class="btn btn-secondary dropdown-toggle add-country" 
+                    type="button" 
+                    data-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false"
+                    style="width: 100%;">
+                    Add a country
+                </button>
+                <div id="js-add-country" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
+                </div>
             </div>
             <br><br>
         </div>
