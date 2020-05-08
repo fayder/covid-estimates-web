@@ -52,6 +52,8 @@ $(document).ready(function() {
             chart_min_population = initializePercentageChart('#chart_estimated_population_min', 'Estimated min. percentage of population infected', result.labels, result.min_population);
             chart_max_population = initializePercentageChart('#chart_estimated_population_max', 'Estimated max. percentage of population infected', result.labels, result.max_population);
             chart_single_population = initializePercentageChart('#chart_estimated_population_single', 'Estimated percentage of population infected', result.labels, result.single_population);
+
+            initializeDropdowns();
         });
     }
 
@@ -137,8 +139,6 @@ $(document).ready(function() {
     }
 
     function process(data) {
-        countries = data;
-        initializeDropdowns();
         var topCountries = data.slice(0, 7);
         var labels = [];
         var min_cases = [];
@@ -148,6 +148,8 @@ $(document).ready(function() {
         var max_population = [];
         var single_population = []
         var result = {};
+
+        countries = data;
 
         topCountries.forEach(function(item, index) {
             labels.push(item['name']);
@@ -307,43 +309,43 @@ $(document).ready(function() {
     function selectCountry() {
         countries.forEach(function(country, index) {
             if (country['name'] == selected_country) {
-                console.log(country);
                 addCountry(country);
             }
         });
     }
 
     function addCountry(country) {
-        chart_min_cases.data.labels.splice(0, 1);
-        chart_min_cases.data.labels.push(country['name']);
+        if($('.js-single-chart').css('display') == "flex") {
+            chart_single_cases.data.labels.splice(0, 1);
+            chart_single_cases.data.labels.push(country['name']);
+            removeFirst(chart_single_cases);
+            addCountryToChart(chart_single_cases, country['single_ifr']);
 
-        chart_single_cases.data.labels.splice(0, 1);
-        chart_single_cases.data.labels.push(country['name']);
+            removeFirst(chart_single_population);
+            addCountryToChart(chart_single_population, country['population_percentage_single']);
 
-        removeFirst(chart_min_cases);
-        addCountryToChart(chart_min_cases, country['high_ifr']);
+            chart_single_cases.update();
+            chart_single_population.update();
+        } else {
+            chart_min_cases.data.labels.splice(0, 1);
+            chart_min_cases.data.labels.push(country['name']);
+            removeFirst(chart_min_cases);
+            addCountryToChart(chart_min_cases, country['high_ifr']);
 
-        removeFirst(chart_max_cases);
-        addCountryToChart(chart_max_cases, country['low_ifr']);
+            removeFirst(chart_max_cases);
+            addCountryToChart(chart_max_cases, country['low_ifr']);
 
-        removeFirst(chart_min_population);
-        addCountryToChart(chart_min_population, country['population_percentange_high']);
+            removeFirst(chart_min_population);
+            addCountryToChart(chart_min_population, country['population_percentange_high']);
 
-        removeFirst(chart_max_population);
-        addCountryToChart(chart_max_population, country['population_percentange_low']);
+            removeFirst(chart_max_population);
+            addCountryToChart(chart_max_population, country['population_percentange_low']);
 
-        removeFirst(chart_single_cases);
-        addCountryToChart(chart_single_cases, country['single_ifr']);
-
-        removeFirst(chart_single_population);
-        addCountryToChart(chart_single_population, country['population_percentage_single']);
-
-        chart_min_cases.update();
-        chart_max_cases.update();
-        chart_min_population.update();
-        chart_max_population.update();
-        chart_single_cases.update();
-        chart_single_population.update();
+            chart_min_cases.update();
+            chart_max_cases.update();
+            chart_min_population.update();
+            chart_max_population.update();
+        }
     }
 
     function removeFirst(chart) {
