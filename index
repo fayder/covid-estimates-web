@@ -45,9 +45,6 @@
         </div>
     </nav>
     <div class="container-fluid">
-        <span style="float: right; margin-right: 16px;">
-            <a href="https://github.com/fayder/covid-estimates-web/issues" target="_blank" title="">Report issues <i class="fas fa-exclamation-triangle"></i></a> 
-        </span>
         <div id="google_translate_element" style="margin: 16px;"></div>
 
         <h1 style="text-align: center; margin: 32px;">Covid-19 Estimates</h1>
