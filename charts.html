@@ -25,10 +25,10 @@
         display: none;
     }
 
-    .dropdown-menu{
-          height:300px;
-          overflow-y:auto;
-       }
+    .dropdown-menu {
+        height: 300px;
+        overflow-y: auto;
+    }
     }
     </style>
 </head>
@@ -49,8 +49,11 @@
             </ul>
         </div>
     </nav>
+    <div class="container-fluid">
+        <div id="google_translate_element" style="margin: 16px;"></div>
+    </div>
     <div class="container">
-        <h1 style="margin: 32px; text-align: center;">Covid-19 Estimates 🛠️👷‍♂️</h1>
+        <h1 style="margin: 32px; text-align: center;">Covid-19 Estimates</h1>
         <div class="container-md">
             <h5>Choose an Infection Fatality Rate (IFR)</h5>
             <div class="list-group">
@@ -75,14 +78,7 @@
         </div>
         <div class="container-sm">
             <div class="dropdown">
-                <button 
-                    id="dropdown-menu-btn"
-                    class="btn btn-secondary dropdown-toggle add-country" 
-                    type="button" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
-                    aria-expanded="false"
-                    style="width: 100%;">
+                <button id="dropdown-menu-btn" class="btn btn-secondary dropdown-toggle add-country" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;">
                     Add a country
                 </button>
                 <div id="js-add-country" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
@@ -133,7 +129,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="covid_charts.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            },
+            'google_translate_element'
+        );
+    }
+    </script>
 </body>
 
 </html>
