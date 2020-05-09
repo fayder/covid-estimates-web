@@ -360,9 +360,5 @@ $(document).ready(function() {
         });
     }
 
-    function updateChart(chart) {
-        chart.update();
-    }
-
     initializeCharts();
 });
