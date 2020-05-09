@@ -53,7 +53,7 @@ $(document).ready(function() {
             chart_max_population = initializePercentageChart('#chart_estimated_population_max', 'Estimated max. percentage of population infected', result.labels, result.max_population);
             chart_single_population = initializePercentageChart('#chart_estimated_population_single', 'Estimated percentage of population infected', result.labels, result.single_population);
 
-            initializeDropdowns();
+            initializeDropdown();
         });
     }
 
@@ -283,7 +283,7 @@ $(document).ready(function() {
         });
     }
 
-    function initializeDropdowns() {
+    function initializeDropdown() {
         var names = [];
         countries.forEach(function(country, index) {
             names.push(country['name']);
@@ -297,11 +297,7 @@ $(document).ready(function() {
             var country_data;
             selected_country = this.textContent;
             $('#dropdown-menu-btn').html(selected_country);
-            countries.forEach(function(country, index) {
-                if (country['name'] == selected_country) {
-                    addCountry(country);
-                }
-            });
+            selectCountry();
 
         });
     }
