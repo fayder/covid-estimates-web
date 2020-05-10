@@ -67,6 +67,8 @@
                     <a class="source_link" href="https://www.land.nrw/sites/default/files/asset/document/zwischenergebnis_covid19_case_study_gangelt_en.pdf" title="source">Source</a>
                 </button>
             </div>
+            <strong>Reported CFR </strong> (or Case Fatality Rate) is calculated by dividing the number of <strong>reported deaths</strong> by the number of <strong>reported cases</strong> <br>
+            <strong>Estimated cases </strong> are calculated by dividing the number of <strong>reported deaths</strong> by the <strong>Infection Fatality Rate</strong>
         </div>
         <div class="table-responsive" style="margin-bottom: 32px;">
             <table id="countries" style="text-align: center;" class="table-fixed" data-search="true" data-show-columns="true" data-sort-priority='[{“sortName”: cases,”sortOrder”:”desc”}]' data-custom-sort="customSort" data-sticky-header="true" data-sticky-header-offset-left="14px" data-sticky-header-offset-right="14px" data-url="https://covid-estimates-backend.herokuapp.com/cebm">
@@ -76,20 +78,11 @@
                         <th scope="col" data-field="population" data-sortable="true">Population</th>
                         <th scope="col" data-field="cases" data-sortable="true">Reported cases</th>
                         <th scope="col" data-field="deaths" data-sortable="true">Reported deaths</th>
-                        <th scope="col" data-field="reported_cfr" data-sortable="true">Reported CFR
-                            <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="reported deaths divided by reported cases"></i>
-                        </th>
-                        <th scope="col" data-field="ifr_range" data-sortable="false">Estimated cases (min-max)
-                            <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="reported deaths divided by ifr range"></i></th>
-                        </th>
-                        <th scope="col" data-field="single_ifr" data-sortable="true">Estimated cases
-                            <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="reported deaths divided by ifr"></i></th>
-                        </th>
-                        <th scope="col" data-field="population_percentage_single" data-sortable="true">
-                            Estimated % of
-                            <br> population infected</th>
-                        <th scope="col" data-field="population_percentage_range">Estimated % of
-                            <br> population infected (min-max)</th>
+                        <th scope="col" data-field="reported_cfr" data-sortable="true">Reported CFR</th>
+                        <th scope="col" data-field="ifr_range" data-sortable="false">Estimated cases (min-max)</th>
+                        <th scope="col" data-field="single_ifr" data-sortable="true">Estimated cases</th>
+                        <th scope="col" data-field="population_percentage_single" data-sortable="true">Estimated % of<br> population infected</th>
+                        <th scope="col" data-field="population_percentage_range">Estimated % of<br> population infected (min-max)</th>
                     </tr>
                 </thead>
                 <tbody>
