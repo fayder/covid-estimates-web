@@ -32,6 +32,11 @@ $(document).ready(function() {
         }
     });
 
+    $('.source_link').click(function(event) {
+        var win = window.open(this.href, '_blank');
+        win.focus();
+    });
+
     // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
     var chart_min_cases;

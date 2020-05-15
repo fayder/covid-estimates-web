@@ -21,6 +21,15 @@
         height: 300px;
         overflow-y: auto;
     }
+    .numbers-container {
+        text-align: center;
+    }
+    .estimate {
+        font-size: 38px;
+    }
+    .col-estimate {
+        display: none;
+    }
     </style>
 </head>
 
@@ -79,6 +88,29 @@
                     Choose a country
                 </button>
                 <div id="js-add-country" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
+                </div>
+            </div>
+            <br><br>
+            <div class="container numbers-container">
+                <div class="row">
+                    <div id="js-cases-range" class="col-md col-estimate">
+                        <h1>Estimated real cases (range)</h1>
+                        <div id="estimated-cases" class="estimate"></div>
+                    </div>
+                    <div id="js-perventage-range" class="col-md col-estimate">
+                        <h5>Estimated percentage of population infected (range)</h5>
+                        <div id="estimated-percentage" class="estimated"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="js-cases-single" class="col-md col-estimate">
+                        <h5>Estimated real cases (single)</h5>
+                        <div id="estimated-cases" class="estimate"></div>
+                    </div>
+                    <div id="js-percentage-single" class="col-md col-estimate">
+                        <h5>Estimated percentage of population infected (single)</h5>
+                        <div id="estimated-percentage" class="estimated"></div>
+                    </div>
                 </div>
             </div>
         </div>

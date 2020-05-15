@@ -30,8 +30,18 @@ $(document).ready(function() {
             requestGangelt();
         }
     });
+
+    $('.source_link').click(function(event) {
+        var win = window.open(this.href, '_blank');
+        win.focus();
+    });
+    
     // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
-    var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/cebm?noformat=true', function(data) {
+    
+    var countries;
+    
+    var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/cebm', function(data) {
+        countries = data;
         var result = process(data);
         initalizeDropdown(result.labels);
     });
@@ -81,6 +91,25 @@ $(document).ready(function() {
     }
 
     function selectCountry(country_name) {
-        
+        var country = findCountry(country_name);
+        renderCases(country);
+    }
+
+    function findCountry(country_name) {
+        var result;
+        countries.forEach( function(country, index) {
+            if (country['name'] == country_name) {
+                result = country;
+            }
+        });
+        return result;
+    }
+
+    function renderCases(country) {
+        var cases_range = country["ifr_range"];
+        if (cases_range != null) {
+            $("#js-cases-range").css('display', 'block');
+            $("#estimated-cases").append(cases_range);
+        }
     }
 });
