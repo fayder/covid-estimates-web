@@ -18,7 +18,7 @@
     }
 
     .dropdown-menu {
-        height: 300px;
+        height: 400px;
         overflow-y: auto;
     }
 
@@ -27,7 +27,7 @@
     }
 
     .estimate {
-        font-size: 42px;
+        font-size: 62px;
     }
 
     .col-estimate {
@@ -63,9 +63,9 @@
         <div class="container-md">
             <h5>Choose an Infection Fatality Rate (IFR)</h5>
             <div class="list-group">
-                <button id="btn_cebm" type="button" class="list-group-item list-group-item-action active" data-toggle="list">
-                    CEBM - IFR <i>(0.1% - 0.41%)</i> -
-                    <a class="source_link" href="https://www.cebm.net/covid-19/global-covid-19-case-fatality-rates" title="source">Source</a>
+                <button id="btn_gangelt" type="button" class="list-group-item list-group-item-action active" data-toggle="list">
+                    Gangelt - IFR <strong>0.37%</strong> -
+                    <a class="source_link" href="https://www.land.nrw/sites/default/files/asset/document/zwischenergebnis_covid19_case_study_gangelt_en.pdf" title="source">Source</a>
                 </button>
                 <button id="btn_medrxiv" type="button" class="list-group-item list-group-item-action" data-toggle="list">
                     Imperial College on Medrxiv - IFR <strong>0.66%</strong> <i>(0.39%, 1.33%)</i> -
@@ -75,9 +75,9 @@
                     Imperial College - IFR <strong> 0.9% </strong> <i>(0.4%, 1.4%)</i> -
                     <a class="source_link" href="https://spiral.imperial.ac.uk:8443/handle/10044/1/77482" title="source">Source</a>
                 </button>
-                <button id="btn_gangelt" type="button" class="list-group-item list-group-item-action" data-toggle="list">
-                    Gangelt - IFR <strong>0.37%</strong> -
-                    <a class="source_link" href="https://www.land.nrw/sites/default/files/asset/document/zwischenergebnis_covid19_case_study_gangelt_en.pdf" title="source">Source</a>
+                <button id="btn_cebm" type="button" class="list-group-item list-group-item-action" data-toggle="list">
+                    CEBM - IFR <i>(0.1% - 0.41%)</i> -
+                    <a class="source_link" href="https://www.cebm.net/covid-19/global-covid-19-case-fatality-rates" title="source">Source</a>
                 </button>
             </div>
             <span style="font-size: 13px;">
@@ -95,24 +95,30 @@
             </div>
             <br><br>
             <div class="container-fluid numbers-container">
+                <div id="cases-reported-container" class="col-md col-estimate">
+                    <h5>Reported cases</h5>
+                    <div id="cases-reported" class="estimate text-primary"></div>
+                    <br><br>
+                </div>
                 <div id="cases-range" class="col-md col-estimate">
                     <h5>Estimated real cases (range)</h5>
-                    <div id="estimated-cases-range" class="estimate"></div>
+                    <div id="estimated-cases-range" class="estimate text-primary"></div>
+                    <br><br>
                 </div>
-                <br><br>
                 <div id="percentage-range" class="col-md col-estimate">
                     <h5>Estimated percentage of population infected (range)</h5>
-                    <div id="estimated-percentage-range" class="estimate"></div>
+                    <div id="estimated-percentage-range" class="estimate text-primary"></div>
+                    <br><br>
                 </div>
-                <br><br>
                 <div id="cases-single" class="col-md col-estimate">
-                    <h2>Estimated real cases (single)</h2>
-                    <div id="estimated-cases-sing" class="estimate"></div>
+                    <h5>Estimated real cases</h5>
+                    <div id="estimated-cases-single" class="estimate text-primary"></div>
+                    <br><br>
                 </div>
-                <br><br>
                 <div id="percentage-single" class="col-md col-estimate">
-                    <h2>Estimated percentage of population infected (single)</h2>
-                    <div id="estimated-percentage-single" class="estimate"></div>
+                    <h5>Estimated percentage of population infected</h5>
+                    <div id="estimated-percentage-single" class="estimate text-primary"></div>
+                    <br><br>
                 </div>
             </div>
         </div>

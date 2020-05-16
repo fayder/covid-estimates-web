@@ -36,18 +36,45 @@ $(document).ready(function() {
         win.focus();
     });
 
+    function requestCEBM() {
+        var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/cebm', function(data) {
+            countries = data;
+            selectCountry(selected_country);
+        });
+    }
+
+    function requestMedrxiv() {
+        var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/medrxiv', function(data) {
+            countries = data;
+            selectCountry(selected_country);
+        });
+    }
+
+    function requestImperialCollege() {
+        var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/imperial_college', function(data) {
+            countries = data;
+            selectCountry(selected_country);
+        });
+    }
+
+    function requestGangelt() {
+        var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/gangelt', function(data) {
+            countries = data;
+            selectCountry(selected_country);
+        });
+    }
     // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
 
     var countries;
     var selected_country;
 
-    var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/cebm', function(data) {
+    var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/gangelt', function(data) {
         countries = data;
         var result = process(data);
         initalizeDropdown(result.labels);
+        
         selected_country = "USA";
         selectCountry(selected_country);
-        $('#dropdown-menu-btn').html(selected_country);
     });
 
     function process(data) {
@@ -88,14 +115,14 @@ $(document).ready(function() {
 
         $('.js-add-country').click(function(event) {
             var country_data;
-            selected_country = this.textContent;
-            $('#dropdown-menu-btn').html(selected_country);
-            selectCountry(selected_country);
+            selectCountry(this.textContent);
         });
     }
 
     function selectCountry(country_name) {
         var country = findCountry(country_name);
+        selected_country = country_name;
+        $('#dropdown-menu-btn').html(selected_country);
         renderCases(country);
     }
 
@@ -110,35 +137,39 @@ $(document).ready(function() {
     }
 
     function renderCases(country) {
+        var cases_reported = country["cases"];
         var cases_range = country["ifr_range"];
         var population_range = country["population_percentage_range"];
         var cases_single = country["single_ifr"]
         var population_single = country["population_percentage_single"]
 
+        $("#cases-reported-container").css("display", "block");
+        $("#cases-reported").html(cases_reported);
+
         if (cases_range != null) {
             $("#cases-range").css('display', 'block');
-            $("#estimated-cases-range").append(cases_range);
+            $("#estimated-cases-range").html(cases_range);
         } else {
             $("#cases-range").css('display', 'none');
         }
 
         if (population_range != null) {
             $("#percentage-range").css("display", "block");
-            $("#estimated-percentage-range").append(population_range);
+            $("#estimated-percentage-range").html(population_range);
         } else {
             $("#percentage-range").css("display", "none");
         }
 
         if (cases_single != null) {
             $("#cases-single").css('display', 'block');
-            $("#estimated-cases-single").append(cases_range);
+            $("#estimated-cases-single").html(cases_single);
         } else {
             $("#cases-single").css('display', 'none');
         }
 
         if (population_single != null) {
             $("#percentage-single").css("display", "block");
-            $("#estimated-percentage-single").append(population_range);
+            $("#estimated-percentage-single").html(population_single);
         } else {
             $("#percentage-single").css("display", "none");
         }

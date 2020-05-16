@@ -49,7 +49,7 @@ $(document).ready(function() {
     var selected_country;
 
     function initializeCharts() {
-        var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/cebm?noformat=true', function(data) {
+        var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/gangelt?noformat=true', function(data) {
             var result = process(data);
             chart_min_cases = initalizeCasesChart('#chart_estimated_cases_min', 'Estimated min. cases', result.labels, result.min_cases);
             chart_max_cases = initalizeCasesChart('#chart_estimated_cases_max', 'Estimated max. cases', result.labels, result.max_cases);
@@ -58,6 +58,8 @@ $(document).ready(function() {
             chart_max_population = initializePercentageChart('#chart_estimated_population_max', 'Estimated max. percentage of population infected', result.labels, result.max_population);
             chart_single_population = initializePercentageChart('#chart_estimated_population_single', 'Estimated percentage of population infected', result.labels, result.single_population);
 
+            $('.js-range-chart').css('display', 'none');
+            $('.js-single-chart ').css('display', 'flex');
             initializeDropdown();
         });
     }
