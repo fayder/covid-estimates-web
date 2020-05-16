@@ -61,14 +61,27 @@
         <h1 style="margin: 32px; text-align: center;">Covid-19 Estimates</h1>
     </div>
     <div class="container-sm contact">
-        <p><i class="fas fa-envelope"></i> covid19estimates@gmail.com</p>
-        <p><strong></strong><a href="https://github.com/fayder/covid-estimates-web/issues" target="_blank" title="Report issues "><i class="fas fa-exclamation-triangle"></i> Report issues</a></p>
+        <p><a 
+            href="#" 
+            class="copy-to-clipboard" 
+            data-clipboard-target="#email-address" 
+            data-toggle="tooltip" 
+            data-placement="bottom" 
+            title="Copied!"><i class="fas fa-envelope"></i> <span id="email-address">covid19estimates@gmail.com</span></a></p>
+        <p><a href="https://github.com/fayder/covid-estimates-web/issues" target="_blank" title="Report issues "><i class="fas fa-exclamation-triangle"></i> Report issues</a></p>
         <p><a href="https://paypal.me/fayder" title="Donate"><i class="fas fa-dollar-sign"></i> Support this project</a></p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+    <script type="text/javascript">
+        new ClipboardJS('.copy-to-clipboard');
+        $(".copy-to-clipboard").click(function(event) {
+            $('[data-toggle="tooltip"]').tooltip('show');
+        });
+    </script>
 </body>
 
 </html>
