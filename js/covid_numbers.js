@@ -35,15 +35,19 @@ $(document).ready(function() {
         var win = window.open(this.href, '_blank');
         win.focus();
     });
-    
+
     // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
-    
+
     var countries;
-    
+    var selected_country;
+
     var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/cebm', function(data) {
         countries = data;
         var result = process(data);
         initalizeDropdown(result.labels);
+        selected_country = "USA";
+        selectCountry(selected_country);
+        $('#dropdown-menu-btn').html(selected_country);
     });
 
     function process(data) {
@@ -97,7 +101,7 @@ $(document).ready(function() {
 
     function findCountry(country_name) {
         var result;
-        countries.forEach( function(country, index) {
+        countries.forEach(function(country, index) {
             if (country['name'] == country_name) {
                 result = country;
             }
@@ -107,9 +111,36 @@ $(document).ready(function() {
 
     function renderCases(country) {
         var cases_range = country["ifr_range"];
+        var population_range = country["population_percentage_range"];
+        var cases_single = country["single_ifr"]
+        var population_single = country["population_percentage_single"]
+
         if (cases_range != null) {
-            $("#js-cases-range").css('display', 'block');
-            $("#estimated-cases").append(cases_range);
+            $("#cases-range").css('display', 'block');
+            $("#estimated-cases-range").append(cases_range);
+        } else {
+            $("#cases-range").css('display', 'none');
+        }
+
+        if (population_range != null) {
+            $("#percentage-range").css("display", "block");
+            $("#estimated-percentage-range").append(population_range);
+        } else {
+            $("#percentage-range").css("display", "none");
+        }
+
+        if (cases_single != null) {
+            $("#cases-single").css('display', 'block');
+            $("#estimated-cases-single").append(cases_range);
+        } else {
+            $("#cases-single").css('display', 'none');
+        }
+
+        if (population_single != null) {
+            $("#percentage-single").css("display", "block");
+            $("#estimated-percentage-single").append(population_range);
+        } else {
+            $("#percentage-single").css("display", "none");
         }
     }
 });
