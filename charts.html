@@ -17,27 +17,17 @@
         text-decoration: underline;
     }
 
-    .dropdown-menu {
-        height: 400px;
-        overflow-y: auto;
+    .js-range-chart {
+        display: flex;
     }
 
-    .numbers-container {
-        text-align: center;
-    }
-
-    .estimate {
-        font-size: 62px;
-    }
-
-    .col-estimate {
+    .js-single-chart {
         display: none;
     }
 
-    @media screen and (max-width: 600px) {
-        .estimate {
-            font-size: 48px;
-        }
+    .dropdown-menu {
+        height: 300px;
+        overflow-y: auto;
     }
     </style>
 </head>
@@ -49,11 +39,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html">Charts</a>
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="charts.html">Charts <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="table.html">Table</a>
@@ -87,53 +77,64 @@
                 </button>
             </div>
             <span style="font-size: 13px;">
-                <strong>Estimated cases </strong> are calculated by dividing the number of <strong>reported deaths</strong> by the <strong>Infection Fatality Rate</strong>
-                <br><br>
+	            <strong>Estimated cases </strong> are calculated by dividing the number of <strong>reported deaths</strong> by the <strong>Infection Fatality Rate</strong>
+	            <br><br>
             </span>
         </div>
-        <div class="container-md">
+        <div class="container-sm">
             <div class="dropdown">
                 <button id="dropdown-menu-btn" class="btn btn-secondary dropdown-toggle add-country" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;">
-                    Choose a country
+                    Add a country
                 </button>
                 <div id="js-add-country" class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
                 </div>
             </div>
             <br><br>
-            <div class="numbers-container">
-                <div id="cases-reported-container" class="col-md col-estimate">
-                    <h5>Reported cases</h5>
-                    <div id="cases-reported" class="estimate text-primary"></div>
-                    <br><br>
-                </div>
-                <div id="cases-range" class="col-md col-estimate">
-                    <h5>Estimated real cases (range)</h5>
-                    <div id="estimated-cases-range" class="estimate text-primary"></div>
-                    <br><br>
-                </div>
-                <div id="percentage-range" class="col-md col-estimate">
-                    <h5>Estimated percentage of population infected (range)</h5>
-                    <div id="estimated-percentage-range" class="estimate text-primary"></div>
-                    <br><br>
-                </div>
-                <div id="cases-single" class="col-md col-estimate">
-                    <h5>Estimated real cases</h5>
-                    <div id="estimated-cases-single" class="estimate text-primary"></div>
-                    <br><br>
-                </div>
-                <div id="percentage-single" class="col-md col-estimate">
-                    <h5>Estimated percentage of population infected</h5>
-                    <div id="estimated-percentage-single" class="estimate text-primary"></div>
-                    <br><br>
-                </div>
+        </div>
+        <div class="row js-range-chart">
+            <div class="col-xl">
+                <p>Estimated min. real cases</p>
+                <canvas id="chart_estimated_cases_min" width="400" height="300"></canvas>
+                <br><br>
+            </div>
+            <div class="col-xl">
+                <p>Estimated max. real cases</p>
+                <canvas id="chart_estimated_cases_max" width="400" height="300"></canvas>
+                <br><br>
+            </div>
+        </div>
+        <div class="row js-range-chart">
+            <div class="col-xl">
+                <p>Estimated min. percentage of population infected</p>
+                <canvas id="chart_estimated_population_min" width="400" height="300"></canvas>
+                <br><br>
+            </div>
+            <div class="col-xl">
+                <p>Estimated max. percentage of population infected</p>
+                <canvas id="chart_estimated_population_max" width="400" height="300"></canvas>
+                <br><br>
+            </div>
+        </div>
+        <div class="row js-single-chart">
+            <div class="col-xl">
+                <p>Estimated real cases</p>
+                <canvas id="chart_estimated_cases_single" width="400" height="300"></canvas>
+                <br><br>
+            </div>
+            <div class="col-xl">
+                <p>Estimated percentage of population infected</p>
+                <canvas id="chart_estimated_population_single" width="400" height="300"></canvas>
+                <br><br>
             </div>
         </div>
     </div>
+    <br><br>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-    <script src="js/covid_numbers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/covid_charts.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>
