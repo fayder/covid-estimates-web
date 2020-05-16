@@ -33,6 +33,12 @@
     .col-estimate {
         display: none;
     }
+
+    @media screen and (max-width: 600px) {
+        .estimate {
+            font-size: 48px;
+        }
+    }
     </style>
 </head>
 
@@ -94,7 +100,7 @@
                 </div>
             </div>
             <br><br>
-            <div class="container-fluid numbers-container">
+            <div class="numbers-container">
                 <div id="cases-reported-container" class="col-md col-estimate">
                     <h5>Reported cases</h5>
                     <div id="cases-reported" class="estimate text-primary"></div>
