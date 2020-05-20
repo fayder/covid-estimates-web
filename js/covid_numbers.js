@@ -140,11 +140,15 @@ $(document).ready(function() {
         var cases_reported = country["cases"];
         var cases_range = country["ifr_range"];
         var population_range = country["population_percentage_range"];
-        var cases_single = country["single_ifr"]
-        var population_single = country["population_percentage_single"]
+        var cases_single = country["single_ifr"];
+        var population_single = country["population_percentage_single"];
+        var deaths_reported = country["deaths"];
 
         $("#cases-reported-container").css("display", "block");
         $("#cases-reported").html(cases_reported);
+
+        $("#deaths-reported-container").css("display", "block");
+        $("#deaths-reported").html(deaths_reported);
 
         if (cases_range != null) {
             $("#cases-range").css('display', 'block');
