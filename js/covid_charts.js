@@ -49,7 +49,7 @@ $(document).ready(function() {
     var selected_country;
 
     function initializeCharts() {
-        var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/gangelt?noformat=true', function(data) {
+        var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/medrxiv?noformat=true', function(data) {
             var result = process(data);
             chart_min_cases = initalizeCasesChart('#chart_estimated_cases_min', 'Estimated min. cases', result.labels, result.min_cases);
             chart_max_cases = initalizeCasesChart('#chart_estimated_cases_max', 'Estimated max. cases', result.labels, result.max_cases);
@@ -58,8 +58,18 @@ $(document).ready(function() {
             chart_max_population = initializePercentageChart('#chart_estimated_population_max', 'Estimated max. percentage of population infected', result.labels, result.max_population);
             chart_single_population = initializePercentageChart('#chart_estimated_population_single', 'Estimated percentage of population infected', result.labels, result.single_population);
 
-            $('.js-range-chart').css('display', 'none');
-            $('.js-single-chart ').css('display', 'flex');
+            if (result.min_cases != null) {
+                $('.js-range-chart').css('display', 'flex');
+            } else {
+                $('.js-range-chart').css('display', 'none');
+            }
+
+            if (result.single_cases != null) {
+                $('.js-single-chart ').css('display', 'flex'); 
+            } else {
+                $('.js-single-chart ').css('display', 'none'); 
+            }
+
             initializeDropdown();
         });
     }
@@ -92,14 +102,18 @@ $(document).ready(function() {
         $('.js-range-chart').css('display', 'none');
         $('.js-single-chart ').css('display', 'flex');
         var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/gangelt?noformat=true', function(data) {
-            updateCharts(data, false)
+            updateCharts(data)
         });
     }
 
-    function updateCharts(data, is_range = true) {
+    function updateCharts(data) {
         var result = process(data);
 
-        if (is_range) {
+        console.log(result.min_cases);
+
+        if (result.min_cases[0] != "0.00") {
+
+            $('.js-range-chart').css('display', 'flex');
 
             chart_min_cases.data.labels = result.labels;
             chart_min_cases.data.datasets.forEach((dataset) => {
@@ -126,6 +140,13 @@ $(document).ready(function() {
             chart_max_population.update();
 
         } else {
+            $('.js-range-chart').css('display', 'none');
+        }
+
+        if (result.single_cases[0] != "0.00") {
+            
+            $('.js-single-chart ').css('display', 'flex');
+
             chart_single_cases.data.labels = result.labels;
             chart_single_cases.data.datasets.forEach((dataset) => {
                 dataset.data = result.single_cases;
@@ -137,6 +158,8 @@ $(document).ready(function() {
                 dataset.data = result.single_population;
             });
             chart_single_population.update();
+        } else {
+            $('.js-single-chart ').css('display', 'none');
         }
 
         if (selected_country != null) {
@@ -318,7 +341,7 @@ $(document).ready(function() {
     }
 
     function addCountry(country) {
-        if($('.js-single-chart').css('display') == "flex") {
+        if ($('.js-single-chart').css('display') == "flex") {
             chart_single_cases.data.labels.splice(0, 1);
             chart_single_cases.data.labels.push(country['name']);
             removeFirst(chart_single_cases);

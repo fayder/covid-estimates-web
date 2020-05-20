@@ -68,7 +68,7 @@ $(document).ready(function() {
     var countries;
     var selected_country;
 
-    var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/gangelt', function(data) {
+    var jqxhr = $.get('https://covid-estimates-backend.herokuapp.com/medrxiv', function(data) {
         countries = data;
         var result = process(data);
         initalizeDropdown(result.labels);
