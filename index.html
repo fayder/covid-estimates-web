@@ -41,8 +41,12 @@
         text-align: center;
     }
 
-    .estimate {
-        font-size: 64px;
+    .estimate-large {
+        font-size: 72px;
+    }
+
+    .estimate-small {
+        font-size: 44px;
     }
 
     .col-estimate {
@@ -50,8 +54,11 @@
     }
 
     @media screen and (max-width: 600px) {
-        .estimate {
-            font-size: 48px;
+        .estimate-large {
+            font-size: 62px;
+        }
+        .estimate-small {
+            font-size: 24px;
         }
     }
     </style>
@@ -119,29 +126,29 @@
             </div>
             <br><br>
             <div class="numbers-container">
-                <div id="cases-reported-container" class="col-md col-estimate">
-                    <h5>Reported cases</h5>
-                    <div id="cases-reported" class="estimate text-primary"></div>
-                    <br><br>
-                </div>
-                <div id="cases-range" class="col-md col-estimate">
-                    <h5>Estimated real cases (range)</h5>
-                    <div id="estimated-cases-range" class="estimate text-primary"></div>
-                    <br><br>
-                </div>
                 <div id="percentage-range" class="col-md col-estimate">
                     <h5>Estimated percentage of population infected (range)</h5>
-                    <div id="estimated-percentage-range" class="estimate text-primary"></div>
-                    <br><br>
-                </div>
-                <div id="cases-single" class="col-md col-estimate">
-                    <h5>Estimated real cases</h5>
-                    <div id="estimated-cases-single" class="estimate text-primary"></div>
+                    <div id="estimated-percentage-range" class="estimate-large text-primary"></div>
                     <br><br>
                 </div>
                 <div id="percentage-single" class="col-md col-estimate">
                     <h5>Estimated percentage of population infected</h5>
-                    <div id="estimated-percentage-single" class="estimate text-primary"></div>
+                    <div id="estimated-percentage-single" class="estimate-large text-primary"></div>
+                    <br><br>
+                </div>
+                <div id="cases-reported-container" class="col-md col-estimate">
+                    <h6>Reported cases</h6>
+                    <div id="cases-reported" class="estimate-small text-primary"></div>
+                    <br><br>
+                </div>
+                <div id="cases-single" class="col-md col-estimate">
+                    <h6>Estimated real cases</h6>
+                    <div id="estimated-cases-single" class="estimate-small text-primary"></div>
+                    <br><br>
+                </div>
+                <div id="cases-range" class="col-md col-estimate">
+                    <h6>Estimated real cases (range)</h6>
+                    <div id="estimated-cases-range" class="estimate-small text-primary"></div>
                     <br><br>
                 </div>
             </div>
